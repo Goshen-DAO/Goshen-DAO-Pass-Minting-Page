@@ -239,9 +239,9 @@ export default function Home() {
         activeClaimCondition.data?.currencyMetadata.value || 0,
       );
       if (pricePerToken.eq(0)) {
-        return "Mint (Free)";
+        return "Claim (Free)";
       }
-      return `Mint (${priceToMint})`;
+      return `Claim (${priceToMint})`;
     }
     if (claimIneligibilityReasons.data?.length) {
       return parseIneligibility(claimIneligibilityReasons.data, quantity);
@@ -250,7 +250,7 @@ export default function Home() {
       return "Checking eligibility...";
     }
 
-    return "Minting not available";
+    return "Claiming not available";
   }, [
     isSoldOut,
     canClaim,
@@ -376,7 +376,7 @@ export default function Home() {
             <div className="flex w-full gap-4">
               {dropNotReady ? (
                 <span className="text-red-500">
-                  This drop is not ready to be minted yet. (No claim condition
+                  This drop is not ready to be claimed yet. (No claim condition
                   set)
                 </span>
               ) : dropStartingSoon ? (
@@ -442,7 +442,7 @@ export default function Home() {
                         console.error(err);
                         console.log({ err });
                         toast({
-                          title: "Failed to mint drop",
+                          title: "Failed to claim nft",
                           description: (err as any).reason || "",
                           duration: 9000,
                           variant: "destructive",
@@ -450,7 +450,7 @@ export default function Home() {
                       }}
                       onSuccess={() => {
                         toast({
-                          title: "Successfully minted",
+                          title: "Successfully claimed",
                           description:
                             "The NFT has been transferred to your wallet",
                           duration: 5000,
